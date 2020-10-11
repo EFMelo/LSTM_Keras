@@ -7,7 +7,7 @@ epochs = 100
 # loading dataset
 x_train, y_train, x_test, y_test, norm = Petr4.load_data(90, pp='mms')
 
-# building CNN
+# building LSTM
 model = Petr4Model.build(target_size=(x_train.shape[1], x_train.shape[2]))
 
 # training
