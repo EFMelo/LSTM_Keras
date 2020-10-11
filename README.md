@@ -12,9 +12,9 @@
 
 **Petr4**
 
-`time_step`: An integer informing the time interval.
-`pp`: A string informing the type of pre-processing: _'mms'_ is MinMaxScaler() and _'std'_ is StandardScaler(). _None_ is the default.
-`*args`: Strings informing the attributes used for LSTM. Values ​​can be: _'Open'_, _'High'_, _'Low'_, _'Close'_, _'Adj Close'_, _'Volume'_.
+- `time_step`: An integer informing the time interval.
+- `pp`: A string informing the type of pre-processing: _'mms'_ is MinMaxScaler() and _'std'_ is StandardScaler(). _None_ is the default.
+- `*args`: Strings informing the attributes used for LSTM. Values ​​can be: _'Open'_, _'High'_, _'Low'_, _'Close'_, _'Adj Close'_, _'Volume'_.
 
 ```python
 from datasets import Petr4
