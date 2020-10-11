@@ -7,6 +7,32 @@ class Petr4:
     @classmethod
     def load_data(cls, time_step, *args, pp=None):
 
+        """
+        Description
+        -----------
+        Predict the share price from 05/28/2018 to 06/22/2018.
+        The default attribute to be predicted is Open.
+    
+        Parameters
+        ----------
+        time_step: int
+                  Time interval.
+        pp : str or None
+            Pre-processing type.
+            The 'mms' or 'std' arguments can be entered, so the MinMaxScaler (mms) or StandardScaler (std) are calculated.
+            The None argument doen nothing.
+        *args: tuple of str.
+              Informs the attributes to be read. Values ​​can be: 'Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume'.
+    
+        Returns
+        -------
+        x_train : ndarray
+        y_train : ndarray
+        x_test : ndarray
+        y_test : ndarray
+        norm : sklearn.preprocessing
+        """
+
         cls.__time_step = time_step
         cls.__atributes = args
         cls.__norm = None
