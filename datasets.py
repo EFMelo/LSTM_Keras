@@ -146,3 +146,67 @@ class Petr4:
         x, y = array(x), array(y)
 
         return x, y
+
+
+class CumulativeOil:
+
+    @classmethod
+    def load_data(cls, time_step, pp=None):
+
+        """
+        Description
+        -----------
+        Cumulative oil production forecast from 06/30/2028 to 05/31/2033
+    
+        Parameters
+        ----------
+        time_step: int
+                  Time interval.
+        pp : str or None
+            Pre-processing type.
+            The 'mms' or 'std' arguments can be entered, so the MinMaxScaler (mms) or StandardScaler (std) are calculated.
+            The None argument doen nothing.
+    
+        Returns
+        -------
+        x_train : ndarray
+        y_train : ndarray
+        x_test : ndarray
+        y_test : ndarray
+        norm : sklearn.preprocessing
+        """
+        
+        norm = None
+        cls.__time_step = time_step
+
+        # reading the data
+        cls.__oil = read_csv('datasets/oil/cumulative_oil.csv').iloc[:, 2:3].values
+
+        # pre-processing        
+        if pp == 'mms':
+            norm = MinMaxScaler()
+        elif pp == 'std':
+            norm = StandardScaler()
+        
+        if pp != None:
+            cls.__oil = norm.fit_transform(cls.__oil)
+
+        # buildind training and test data
+        x_train, y_train = cls.__build_input_output(0, 182)  # 182 months for training data
+        x_test, y_test = cls.__build_input_output(182 - time_step, 242)  # 60 months for test data
+
+        return x_train, y_train, x_test, y_test, norm
+    
+    @classmethod
+    def __build_input_output(cls, ini_size, end_size):
+
+        x, y = [], []
+        oil = cls.__oil[ini_size:end_size]
+
+        for i in range(cls.__time_step, oil.shape[0]):
+            x.append(oil[i-cls.__time_step:i])
+            y.append(oil[i, 0])
+
+        x, y = array(x), array(y)
+
+        return x, y
