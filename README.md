@@ -120,6 +120,8 @@ Results.curves(y_test, prediction)
 
 ### Contact
 
+[linkedin.com/in/edvaldo-melo/](https://www.linkedin.com/in/edvaldo-melo/)
+
 emeloppgi@gmail.com
 
 [github.com/EFMelo](https://github.com/EFMelo)
